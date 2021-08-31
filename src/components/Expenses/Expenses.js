@@ -9,16 +9,25 @@ import './Expenses.css'
   const [filteredYear, setFilteredYear] = useState('2021');
 
   const addFilterByYear = (newYear) => {
+    console.log('INSIDE ADDFILTER BY YEAR')
     setFilteredYear(newYear);
     console.log(`Expenses showing ${newYear}`);
   }
 
+  const filteredExpenses = props.items.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  })
 
       return (
         <div>
           <Card>
               <ExpensesFilter selected={filteredYear} showYearHandler={addFilterByYear}/>
-              {props.items.map(expense => <ExpenseItem title={expense.title} amount={expense.amount} date={expense.date}/>)}
+              {filteredExpenses.map(expense => 
+                <ExpenseItem 
+                  key={expense.id} 
+                  title={expense.title} 
+                  amount={expense.amount} 
+                  date={expense.date}/>)}
           </Card>
         </div>
       )
