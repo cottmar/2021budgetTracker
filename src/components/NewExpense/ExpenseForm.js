@@ -28,7 +28,6 @@ const ExpenseForm = (props) => {
             amount: enteredAmount,
             date: new Date(enteredDate)
         }
-        console.log(expenseData, 'cara')
         props.onSaveExpenseData(expenseData);
         setEnteredTitle('')
         setEnteredAmount('')
